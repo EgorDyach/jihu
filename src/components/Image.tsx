@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { withIndentStyles } from "@hocs/withIndentStyles";
-import { radius } from "@lib/theme/sizes";
 
 interface ImageProps {
   $size?: string;
@@ -17,7 +16,7 @@ const StyledImage = styled.img<ImageProps>`
   width: ${({ $size, $width }) => $size || $width || "100%"};
   height: ${({ $maxSize, $maxHeight }) => $maxSize || $maxHeight || "100%"};
   width: ${({ $maxSize, $maxWidth }) => $maxSize || $maxWidth || "100%"};
-  border-radius: ${({ $borderRadius }) => $borderRadius || radius.xLarge};
+  border-radius: ${({ $borderRadius }) => $borderRadius}px;
   object-fit: cover;
   -o-object-fit: cover;
 `;
