@@ -12,6 +12,9 @@ import { headerLinks } from "./constants";
 const HeaderLink = styled(Link)<{ isActive?: boolean }>`
   color: ${content.white};
   text-decoration: none;
+  position: relative;
+  transition: 0.3s ease-in-out;
+
   &::after {
     content: "";
     position: absolute;
@@ -19,18 +22,10 @@ const HeaderLink = styled(Link)<{ isActive?: boolean }>`
     height: 1px;
     background-color: ${content.primary};
     left: -3px;
-    bottom: 3px;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    bottom: 0px;
+    opacity: ${(props) => (props.isActive ? 1 : 0)};
+    transition: 0.3s ease-in-out;
   }
-  position: relative;
-  ${(props) =>
-    props.isActive &&
-    `
-    &::after {
-       opacity: 1;
-       }
-  `};
 `;
 
 const HeaderLogo = styled(Link)`
@@ -47,6 +42,7 @@ const HeaderNavWrapper = styled(Flex)`
   max-width: 1280px;
   width: 100%;
   padding: 0 15px;
+  position: relative;
 `;
 
 const StyledHeaderNav = styled(Flex)`
@@ -58,6 +54,13 @@ const StyledHeaderNav = styled(Flex)`
   width: 100%;
 `;
 
+const HeaderLinks = styled(Flex)`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+`;
+
 export const HeaderNav = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -66,13 +69,13 @@ export const HeaderNav = () => {
     <StyledHeaderNav justify="center">
       <HeaderNavWrapper justify="space-between">
         <HeaderLogo to={"/shop"}>JIHU.RU</HeaderLogo>
-        <Flex gap={indent.large}>
+        <HeaderLinks gap={indent.large}>
           {headerLinks.map((link) => (
             <HeaderLink isActive={pathname.includes(link.path)} to={link.path}>
               {link.title}
             </HeaderLink>
           ))}
-        </Flex>
+        </HeaderLinks>
         <IconButton
           icon={<CartIcon color="#fff" size={24} />}
           onClick={() => navigate(AppRoutes.cart)}

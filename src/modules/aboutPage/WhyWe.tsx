@@ -77,8 +77,8 @@ export const WhyWe = () => {
         стратегии и алгоритмы. <br /> Также профессиональные инвесторы и
         акционеры публикуют множество статей из биржевого мира в своем блоге.
       </WhyWeParagraph>
-      <WhyWeButton onClick={() => navigate(AppRoutes.blog)}>
-        Читать статьи
+      <WhyWeButton onClick={() => navigate(AppRoutes.shop)}>
+        Купить роботов
       </WhyWeButton>
     </WhyWeWrapper>
   );

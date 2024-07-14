@@ -1,11 +1,11 @@
 import Flex from "@components/Flex";
 import styled from "styled-components";
-import { ABOUT_BG_VIDEO_URL } from "./constants";
 import { useNavigate } from "react-router-dom";
 import { content } from "@lib/theme/colors";
 import { AppRoutes } from "@lib/configs/routes";
 import { indent } from "@lib/theme/sizes";
 import ABOUT_BG_PRE_IMAGE_URL from "/img/about_preimg.jpg";
+import ABOUT_BG_VIDEO_URL from "/about_video.mp4";
 
 const HeroContent = styled(Flex)`
   background: rgba(0, 0, 0, 0.4);
