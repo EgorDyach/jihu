@@ -9,6 +9,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    background-color: #eeeeee;
     font-family: "Montserrat", sans-serif;
     ${getFontSizes("default")}
   }
