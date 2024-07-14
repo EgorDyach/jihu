@@ -68,10 +68,16 @@ export const HeaderNav = () => {
   return (
     <StyledHeaderNav justify="center">
       <HeaderNavWrapper justify="space-between">
-        <HeaderLogo to={"/shop"}>JIHU.RU</HeaderLogo>
+        <HeaderLogo to={"/"}>JIHU.RU</HeaderLogo>
         <HeaderLinks gap={indent.large}>
           {headerLinks.map((link) => (
-            <HeaderLink isActive={pathname.includes(link.path)} to={link.path}>
+            <HeaderLink
+              isActive={
+                pathname.includes(link.path) ||
+                (link.path === "/shop" && pathname === "/")
+              }
+              to={link.path}
+            >
               {link.title}
             </HeaderLink>
           ))}

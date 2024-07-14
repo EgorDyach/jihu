@@ -2,11 +2,30 @@ import { createBrowserRouter } from "react-router-dom";
 import { MainLayout } from "@layouts/mainLayout/MainLayout";
 import { aboutPath } from "@modules/aboutPage/constants";
 import { AboutPage } from "@modules/aboutPage/AboutPage";
-import { shopPath } from "@modules/shopPage/constants";
 import { ShopPage } from "@modules/shopPage/ShopPage";
 import { ShopLayout } from "@layouts/shopLayout/ShopLayout";
+import PageNotFound from "@modules/pageNotFound/PageNotFound";
 
 export const appRoutersConfig = createBrowserRouter([
+  {
+    path: "/",
+    element: <ShopLayout />,
+    errorElement: (
+      <MainLayout>
+        <PageNotFound />
+      </MainLayout>
+    ),
+    children: [
+      {
+        path: "",
+        element: <ShopPage />,
+      },
+      {
+        path: "/shop",
+        element: <ShopPage />,
+      },
+    ],
+  },
   {
     path: "/",
     element: <MainLayout />,
@@ -14,16 +33,6 @@ export const appRoutersConfig = createBrowserRouter([
       {
         path: aboutPath,
         element: <AboutPage />,
-      },
-    ],
-  },
-  {
-    path: "/",
-    element: <ShopLayout />,
-    children: [
-      {
-        path: shopPath,
-        element: <ShopPage />,
       },
     ],
   },
