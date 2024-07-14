@@ -12,6 +12,7 @@ export const fetchRobots = () => async (dispatch: AppDispatch) => {
       uiActions.setFilteredRobots({
         minPrice: 0,
         maxPrice: getMaxPrice(robots),
+        activeSort: "POPULAR",
       }),
     );
   } catch (e) {
