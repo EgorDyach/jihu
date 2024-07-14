@@ -23,6 +23,7 @@ const StyledInput = styled.input`
   padding: 8px;
   padding-left: 24px;
   text-align: right;
+  font-family: "Montserrat";
 `;
 
 const InputSpan = styled.span`
@@ -32,6 +33,7 @@ const InputSpan = styled.span`
   transform: translateY(-50%);
   font-size: 12px;
   color: #888;
+  font-family: "Montserrat";
 `;
 
 const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
@@ -61,7 +63,6 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        margin: "2em 0",
         maxWidth: 500,
         width: "100%",
         gap: 32,

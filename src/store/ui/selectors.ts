@@ -11,3 +11,5 @@ export const getRobots = (s: StoreWithUIState): Robot[] => getState(s).robots;
 
 export const getFiltered = (s: StoreWithUIState): Robot[] =>
   getState(s).filteredRobots;
+
+export const getCart = (s: StoreWithUIState): Robot[] => getState(s).cart;
