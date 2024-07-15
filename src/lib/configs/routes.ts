@@ -3,5 +3,6 @@ export const AppRoutes = {
   cart: "/cart",
   shop: "/shop",
   blog: "/blog",
+  admin: "/admin",
   robotWithId: (id: string | number) => `/shop/${id}`,
 };

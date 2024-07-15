@@ -7,6 +7,10 @@ import { ShopLayout } from "@layouts/shopLayout/ShopLayout";
 import PageNotFound from "@modules/pageNotFound/PageNotFound";
 import { RobotPage, robotPath } from "@modules/robotPage/RobotPage";
 import { CartPage, cartPath } from "@modules/cartPage/CartPage";
+import {
+  AdminLoginPage,
+  AdminLoginPath,
+} from "@modules/adminPage/AdminLoginPage";
 
 export const appRoutersConfig = createBrowserRouter([
   {
@@ -33,6 +37,10 @@ export const appRoutersConfig = createBrowserRouter([
       {
         path: cartPath,
         element: <CartPage />,
+      },
+      {
+        path: AdminLoginPath,
+        element: <AdminLoginPage />,
       },
     ],
   },
