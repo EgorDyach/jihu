@@ -6,7 +6,7 @@ import { whyWeValues } from "./constants";
 import { ItemTitle, Paragraph } from "@components/Typography";
 import { useNavigate } from "react-router-dom";
 import { AppRoutes } from "@lib/configs/routes";
-import { indent } from "@lib/theme/sizes";
+import Button from "@components/Button/Button";
 
 const WhyWeWrapper = styled(Flex)`
   position: relative;
@@ -47,18 +47,6 @@ const WhyWeParagraph = styled(Paragraph)`
   color: ${content.white};
 `;
 
-const WhyWeButton = styled.button`
-  background-color: ${content.primary};
-  border-radius: 10px;
-  border: none;
-  color: ${content.white};
-  padding: ${indent.medium} ${indent.vlarge};
-  cursor: pointer;
-  margin-top: ${indent.xlarge};
-  font-size: ${indent.medium};
-  font-family: "Montserrat";
-`;
-
 export const WhyWe = () => {
   const navigate = useNavigate();
   return (
@@ -77,9 +65,14 @@ export const WhyWe = () => {
         стратегии и алгоритмы. <br /> Также профессиональные инвесторы и
         акционеры публикуют множество статей из биржевого мира в своем блоге.
       </WhyWeParagraph>
-      <WhyWeButton onClick={() => navigate(AppRoutes.shop)}>
+      <Button
+        $top="large"
+        borderRadius={10}
+        padding="16px 48px"
+        onClick={() => navigate(AppRoutes.shop)}
+      >
         Купить роботов
-      </WhyWeButton>
+      </Button>
     </WhyWeWrapper>
   );
 };

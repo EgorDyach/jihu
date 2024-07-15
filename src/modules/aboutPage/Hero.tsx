@@ -1,11 +1,11 @@
 import Flex from "@components/Flex";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { content } from "@lib/theme/colors";
 import { AppRoutes } from "@lib/configs/routes";
 import { indent } from "@lib/theme/sizes";
 import ABOUT_BG_PRE_IMAGE_URL from "/img/about_preimg.jpg";
 import ABOUT_BG_VIDEO_URL from "/about_video.mp4";
+import Button from "@components/Button/Button";
 
 const HeroContent = styled(Flex)`
   background: rgba(0, 0, 0, 0.4);
@@ -46,18 +46,6 @@ const HeroDescription = styled.p`
   margin-top: ${indent.xlarge};
 `;
 
-const HeroButton = styled.button`
-  background-color: ${content.primary};
-  border-radius: 10px;
-  border: none;
-  color: ${content.white};
-  padding: ${indent.medium} ${indent.vlarge};
-  cursor: pointer;
-  margin-top: ${indent.xlarge};
-  font-size: ${indent.medium};
-  font-family: "Montserrat";
-`;
-
 export const Hero = () => {
   const navigate = useNavigate();
   return (
@@ -68,9 +56,14 @@ export const Hero = () => {
       <HeroContent direction="column" align="center">
         <HeroTitle>JIHU.RU</HeroTitle>
         <HeroDescription>Инвестиции по-новому</HeroDescription>
-        <HeroButton onClick={() => navigate(AppRoutes.shop)}>
+        <Button
+          $top="large"
+          borderRadius={10}
+          padding="16px 48px"
+          onClick={() => navigate(AppRoutes.shop)}
+        >
           Купить роботов
-        </HeroButton>
+        </Button>
       </HeroContent>
     </HeroWrapper>
   );
