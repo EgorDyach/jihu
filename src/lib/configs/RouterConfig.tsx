@@ -5,6 +5,7 @@ import { AboutPage } from "@modules/aboutPage/AboutPage";
 import { ShopPage } from "@modules/shopPage/ShopPage";
 import { ShopLayout } from "@layouts/shopLayout/ShopLayout";
 import PageNotFound from "@modules/pageNotFound/PageNotFound";
+import { RobotPage, robotPath } from "@modules/robotPage/RobotPage";
 
 export const appRoutersConfig = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const appRoutersConfig = createBrowserRouter([
       {
         path: "/shop",
         element: <ShopPage />,
+      },
+      {
+        path: robotPath,
+        element: <RobotPage />,
       },
     ],
   },

@@ -15,7 +15,7 @@ const HeaderLink = styled(Link)`
 const HeaderContactsWrapper = styled(Flex)`
   max-width: 1280px;
   width: 100%;
-  padding: 0 15px;
+  padding: 0 32px;
 `;
 
 const StyledHeaderContacts = styled(Flex)`

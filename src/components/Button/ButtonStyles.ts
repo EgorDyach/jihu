@@ -45,6 +45,15 @@ export const StyledButton = styled.button<{
     }
   }
 
+  & svg {
+    transition: transform 0.3s ease;
+    ${(props) =>
+      props.$type === "danger" &&
+      `
+      transform: rotate(135deg);
+    `}
+  }
+
   &.ant-btn-default {
     &:not(:disabled) {
       &:hover {

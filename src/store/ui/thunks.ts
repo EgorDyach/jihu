@@ -2,6 +2,7 @@ import { requestRobots$ } from "@lib/api/robots";
 import { uiActions } from ".";
 import { AppDispatch } from "..";
 import { getMaxPrice } from "@modules/shopPage/helpers";
+import { toast } from "react-toastify";
 
 export const fetchRobots = () => async (dispatch: AppDispatch) => {
   dispatch(uiActions.setRequestStarted("getRobots"));
@@ -16,7 +17,7 @@ export const fetchRobots = () => async (dispatch: AppDispatch) => {
       }),
     );
   } catch (e) {
-    alert("Ошибка при получении информации о роботах");
+    toast("Ошибка при получении информации о роботах");
   } finally {
     dispatch(uiActions.setRequestFinished("getRobots"));
   }
