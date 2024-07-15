@@ -38,7 +38,7 @@ export const background = {
 
 // TODO move/remove?!
 export const button = {
-  primaryBg: "#3062d4",
+  primaryBg: "#C9C9C9",
   primaryBgHover: "#1e50c0",
   primaryBgActive: "#113997",
   secondary: "#4A545E",

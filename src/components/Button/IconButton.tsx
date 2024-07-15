@@ -9,6 +9,7 @@ const StyledIconButton = styled.button`
   padding: 0;
   background-color: transparent;
   border: 0;
+  cursor: pointer;
 `;
 
 const RawButton: FC<IconButtonProps> = ({ onClick, disabled, icon }) => {

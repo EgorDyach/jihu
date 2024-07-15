@@ -6,6 +6,7 @@ import { ShopPage } from "@modules/shopPage/ShopPage";
 import { ShopLayout } from "@layouts/shopLayout/ShopLayout";
 import PageNotFound from "@modules/pageNotFound/PageNotFound";
 import { RobotPage, robotPath } from "@modules/robotPage/RobotPage";
+import { CartPage, cartPath } from "@modules/cartPage/CartPage";
 
 export const appRoutersConfig = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ export const appRoutersConfig = createBrowserRouter([
       {
         path: robotPath,
         element: <RobotPage />,
+      },
+      {
+        path: cartPath,
+        element: <CartPage />,
       },
     ],
   },

@@ -37,12 +37,11 @@ export const StyledButton = styled.button<{
     }
   }
 
-  &.ant-btn-primary {
-    &:disabled {
-      color: ${content.white};
-      background-color: ${button.primaryBg};
-      opacity: 0.5;
-    }
+  &:disabled {
+    color: ${content.white};
+    background-color: ${button.primaryBg};
+    opacity: 0.5;
+    cursor: default;
   }
 
   & svg {
