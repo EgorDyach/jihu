@@ -10,6 +10,9 @@ const uiSlice = createSlice({
     setRobots(state, { payload }: PayloadAction<Robot[]>) {
       state.robots = payload;
     },
+    setFilteredNoFilters(state, { payload }: PayloadAction<Robot[]>) {
+      state.filteredRobots = payload;
+    },
     setFilteredRobots(
       state,
       {

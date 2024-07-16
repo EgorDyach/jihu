@@ -33,6 +33,7 @@ const DropdownMenu = styled.div<{
   $isOpen: boolean;
   $dropdownPosition: DropdownPosition;
 }>`
+  display: ${(props) => (props.$isOpen ? "block" : "none")};
   opacity: ${(props) => (props.$isOpen ? 1 : 0)};
   transition: opacity 0.2s ease;
   position: absolute;

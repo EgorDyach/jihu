@@ -1,6 +1,6 @@
 import Flex from "@components/Flex";
 import { ItemTitle, Paragraph } from "@components/Typography";
-import { background } from "@lib/theme/colors";
+import { background, content } from "@lib/theme/colors";
 import { radius, indent } from "@lib/theme/sizes";
 import { Robot } from "@type/robots";
 import { FC } from "react";
@@ -15,6 +15,12 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import Button from "@components/Button/Button";
 import { isAdmin } from "@lib/utils/isAdmin";
+import IconButton from "@components/Button/IconButton";
+import ThreeDotsIcon from "@components/icons/ThreeDotsIcon";
+import Dropdown from "@components/Dropdown";
+import PenIcon from "@components/icons/PenIcon";
+import TrashIcon from "@components/icons/TrashIcon";
+import { requestRemoveRobot } from "@lib/api/admin";
 
 interface ShopCardProps {
   robot: Robot;
@@ -28,8 +34,14 @@ const ShopCardStyled = styled(Flex)`
   padding: ${indent.large} ${indent.xlarge};
 `;
 
+const DropdownItem = styled(Flex)<{ $type: "edit" | "delete" }>`
+  color: ${(props) =>
+    props.$type === "edit" ? content.primary : content.danger};
+`;
+
 export const ShopCard: FC<ShopCardProps> = ({ robot }) => {
   const cart = useSelector(uiSelectors.getCart);
+  const allRobots = useSelector(uiSelectors.getRobots);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const isInCart = !!cart.filter((el) => el.id === robot.id).length;
@@ -60,6 +72,25 @@ export const ShopCard: FC<ShopCardProps> = ({ robot }) => {
       });
     }
   };
+
+  const removeRobot = async (id: string | number) => {
+    try {
+      await requestRemoveRobot(id);
+      toast("✅ Робот успешно удален!");
+      dispatch(uiActions.setRobots(allRobots.filter((el) => el.id !== id)));
+      dispatch(
+        uiActions.setFilteredNoFilters(allRobots.filter((el) => el.id !== id)),
+      );
+    } catch (error) {
+      toast("❌ Не удалось удалить!");
+    }
+  };
+
+  const onClick = (key: string) => {
+    if (key === "edit") navigate(AppRoutes.editRobot(robot.id));
+    if (key === "delete") removeRobot(robot.id);
+  };
+
   return (
     <ShopCardStyled direction="column">
       <ItemTitle>{robot.name}</ItemTitle>
@@ -73,7 +104,34 @@ export const ShopCard: FC<ShopCardProps> = ({ robot }) => {
           >
             Подробнее
           </Button>
-          {!isAdmin() && (
+          {isAdmin() ? (
+            <Dropdown
+              position="bottomRight"
+              options={[
+                {
+                  label: (
+                    <DropdownItem $type="edit" gap="8px">
+                      <PenIcon size={14} />
+                      <Paragraph>Редактировать</Paragraph>
+                    </DropdownItem>
+                  ),
+                  key: "edit",
+                },
+                {
+                  label: (
+                    <DropdownItem $type="delete" gap="8px">
+                      <TrashIcon size={14} />
+                      <Paragraph>Удалить</Paragraph>
+                    </DropdownItem>
+                  ),
+                  key: "delete",
+                },
+              ]}
+              onClick={onClick}
+            >
+              <IconButton icon={<ThreeDotsIcon size={20} />} />
+            </Dropdown>
+          ) : (
             <Button
               type={isInCart ? "danger" : "primary"}
               icon={<PlusIcon size={20} />}

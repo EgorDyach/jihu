@@ -1,6 +1,6 @@
 import { Robot } from "@type/robots";
 
-const fakeRobotsArr: Robot[] = [
+let fakeRobotsArr: Robot[] = [
   {
     id: 1,
     name: "robot 1",
@@ -44,5 +44,14 @@ export const fakeRequestRobots = (isError?: boolean): Promise<Robot[]> => {
       if (isError) reject("Ошибка в получении данных!");
       resolve(fakeRobotsArr);
     }, 1000);
+  });
+};
+
+export const fakeRequestRemoveRobot = (id: string | number): Promise<void> => {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      fakeRobotsArr = fakeRobotsArr.filter((el) => el.id !== id);
+      resolve();
+    }, 200);
   });
 };

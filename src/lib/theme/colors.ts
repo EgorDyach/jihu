@@ -14,6 +14,7 @@ export const content = {
   hoveredLink: "#1E50C0",
   activeLink: "#1E50C0",
   focusedLink: "#113997",
+  danger: "#D90D00",
 };
 
 export const border = {
