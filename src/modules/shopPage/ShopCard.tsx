@@ -14,6 +14,7 @@ import { uiActions, uiSelectors } from "@store/ui";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import Button from "@components/Button/Button";
+import { isAdmin } from "@lib/utils/isAdmin";
 
 interface ShopCardProps {
   robot: Robot;
@@ -72,15 +73,17 @@ export const ShopCard: FC<ShopCardProps> = ({ robot }) => {
           >
             Подробнее
           </Button>
-          <Button
-            type={isInCart ? "danger" : "primary"}
-            icon={<PlusIcon size={20} />}
-            onClick={addToCart}
-          >
-            <Paragraph>
-              {isInCart ? "Убрать из корзины" : "В корзину"}
-            </Paragraph>
-          </Button>
+          {!isAdmin() && (
+            <Button
+              type={isInCart ? "danger" : "primary"}
+              icon={<PlusIcon size={20} />}
+              onClick={addToCart}
+            >
+              <Paragraph>
+                {isInCart ? "Убрать из корзины" : "В корзину"}
+              </Paragraph>
+            </Button>
+          )}
         </Flex>
       </Flex>
     </ShopCardStyled>

@@ -32,7 +32,7 @@ export const AdminLoginPage = () => {
       const token = await requestLogin(login, password);
       localStorage.setItem("accessJihu", token);
       toast("✅ Вы успешно вошли!");
-      navigate(AppRoutes.admin);
+      navigate(AppRoutes.shop);
     } catch (error) {
       toast("❌ Не удалось войти!");
     } finally {

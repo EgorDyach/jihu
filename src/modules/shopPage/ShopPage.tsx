@@ -14,6 +14,10 @@ import { indent } from "@lib/theme/sizes";
 import styled from "styled-components";
 import { getMaxPrice } from "./helpers";
 import Image from "@components/Image";
+import { isAdmin } from "@lib/utils/isAdmin";
+import Button from "@components/Button/Button";
+import { useNavigate } from "react-router-dom";
+import { AppRoutes } from "@lib/configs/routes";
 
 const ClearFilters = styled.button`
   background-color: ${content.primary};
@@ -28,8 +32,10 @@ const ClearFilters = styled.button`
 `;
 
 export const ShopPage = () => {
-  const robots = useSelector(uiSelectors.getFiltered);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const robots = useSelector(uiSelectors.getFiltered);
   const status = useSelector(uiSelectors.getRequests);
   const allServerRobots = useSelector(uiSelectors.getRobots);
   useEffect(() => {
@@ -40,7 +46,14 @@ export const ShopPage = () => {
 
   return (
     <>
-      <Header>Роботы</Header>
+      <Flex justify="space-between">
+        <Header>Роботы</Header>
+        {isAdmin() && (
+          <Button onClick={() => navigate(AppRoutes.adminCreate)}>
+            Добавить робота
+          </Button>
+        )}
+      </Flex>
       <Flex direction="column">
         <ShopControls />
         {!!robots.length && (

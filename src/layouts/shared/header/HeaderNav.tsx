@@ -8,6 +8,8 @@ import styled from "styled-components";
 
 import { content } from "@lib/theme/colors";
 import { headerLinks } from "./constants";
+import { isAdmin } from "@lib/utils/isAdmin";
+import LogoutIcon from "@components/icons/LogoutIcon";
 
 const HeaderLink = styled(Link)<{ isActive?: boolean }>`
   color: ${content.white};
@@ -82,10 +84,21 @@ export const HeaderNav = () => {
             </HeaderLink>
           ))}
         </HeaderLinks>
-        <IconButton
-          icon={<CartIcon color="#fff" size={24} />}
-          onClick={() => navigate(AppRoutes.cart)}
-        />
+        <Flex gap="24px">
+          <IconButton
+            icon={<CartIcon color="#fff" size={24} />}
+            onClick={() => navigate(AppRoutes.cart)}
+          />
+          {isAdmin() && (
+            <IconButton
+              icon={<LogoutIcon color="#fff" size={24} />}
+              onClick={() => {
+                localStorage.removeItem("accessJihu");
+                navigate(AppRoutes.about);
+              }}
+            />
+          )}
+        </Flex>
       </HeaderNavWrapper>
     </StyledHeaderNav>
   );
