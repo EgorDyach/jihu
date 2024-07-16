@@ -11,7 +11,7 @@ import { headerLinks } from "./constants";
 import { isAdmin } from "@lib/utils/isAdmin";
 import LogoutIcon from "@components/icons/LogoutIcon";
 
-const HeaderLink = styled(Link)<{ isActive?: boolean }>`
+const HeaderLink = styled(Link)<{ $isActive?: boolean }>`
   color: ${content.white};
   text-decoration: none;
   position: relative;
@@ -25,7 +25,7 @@ const HeaderLink = styled(Link)<{ isActive?: boolean }>`
     background-color: ${content.primary};
     left: -3px;
     bottom: 0px;
-    opacity: ${(props) => (props.isActive ? 1 : 0)};
+    opacity: ${(props) => (props.$isActive ? 1 : 0)};
     transition: 0.3s ease-in-out;
   }
 `;
@@ -72,9 +72,10 @@ export const HeaderNav = () => {
       <HeaderNavWrapper justify="space-between">
         <HeaderLogo to={"/"}>JIHU.RU</HeaderLogo>
         <HeaderLinks gap={indent.large}>
-          {headerLinks.map((link) => (
+          {headerLinks.map((link, index) => (
             <HeaderLink
-              isActive={
+              key={index}
+              $isActive={
                 pathname.includes(link.path) ||
                 (link.path === "/shop" && pathname === "/")
               }

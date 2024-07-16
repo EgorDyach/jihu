@@ -11,6 +11,8 @@ import {
   AdminLoginPage,
   AdminLoginPath,
 } from "@modules/adminPage/AdminLoginPage";
+import { createRobotPath } from "@modules/robotForms/constants";
+import CreateRobotPage from "@modules/robotForms/CreateRobot";
 
 export const appRoutersConfig = createBrowserRouter([
   {
@@ -29,6 +31,10 @@ export const appRoutersConfig = createBrowserRouter([
       {
         path: "/shop",
         element: <ShopPage />,
+      },
+      {
+        path: createRobotPath,
+        element: <CreateRobotPage />,
       },
       {
         path: robotPath,

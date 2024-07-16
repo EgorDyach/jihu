@@ -1,3 +1,4 @@
+import { RobotFormPayload } from "@modules/robotForms/types";
 import { Robot } from "@type/robots";
 
 let fakeRobotsArr: Robot[] = [
@@ -51,6 +52,17 @@ export const fakeRequestRemoveRobot = (id: string | number): Promise<void> => {
   return new Promise<void>((resolve) => {
     setTimeout(() => {
       fakeRobotsArr = fakeRobotsArr.filter((el) => el.id !== id);
+      resolve();
+    }, 200);
+  });
+};
+
+export const fakeRequestCreateRobot = (
+  payload: RobotFormPayload,
+): Promise<void> => {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      console.log(payload);
       resolve();
     }, 200);
   });

@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type Indent =
   | "none"
   | "xsmall"
@@ -6,8 +8,7 @@ export type Indent =
   | "medium"
   | "large"
   | "xlarge"
-  | "xxlarge"
-  | "vlarge";
+  | "xxlarge";
 
 export interface IndentStylesProps {
   $top?: Indent;
@@ -23,3 +24,44 @@ export type FontSize =
   | "header"
   | "heroMedium"
   | "heroLarge";
+
+export interface BreadcrumbItem {
+  title: string;
+  path?: string;
+}
+
+export interface SidebarMenuLink {
+  key: string;
+  icon: ReactNode;
+  label: string;
+  path: string;
+}
+
+export interface SidebarMenuSubs {
+  type: "divider";
+}
+
+export type SidebarMenuItem = SidebarMenuSubs | SidebarMenuLink;
+
+export interface FormControlProps {
+  name: string;
+}
+
+export interface PaginationQueryParams {
+  limit: number;
+  offset: number;
+}
+
+export interface TabsItem {
+  label: string;
+  key: string;
+  children: string | ReactNode;
+}
+
+export interface CategoryItem {
+  id: number;
+  title: string;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AnyObject = Record<string, any>;

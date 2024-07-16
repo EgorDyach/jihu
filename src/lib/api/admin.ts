@@ -1,5 +1,9 @@
+import { RobotFormPayload } from "@modules/robotForms/types";
 import { fakeRequestLogin } from "./fakeApi/admin";
-import { fakeRequestRemoveRobot } from "./fakeApi/robots";
+import {
+  fakeRequestCreateRobot,
+  fakeRequestRemoveRobot,
+} from "./fakeApi/robots";
 
 export const requestLogin = async (
   login: string,
@@ -12,4 +16,10 @@ export const requestRemoveRobot = async (
   id: string | number,
 ): Promise<void> => {
   return await fakeRequestRemoveRobot(id);
+};
+
+export const requestCreateRobot = async (
+  robotPayload: RobotFormPayload,
+): Promise<void> => {
+  return await fakeRequestCreateRobot(robotPayload);
 };

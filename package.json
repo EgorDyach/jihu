@@ -12,9 +12,14 @@
     "ts-check": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-react": "^8.0.0",
     "@reduxjs/toolkit": "^2.2.6",
     "@vitejs/plugin-react-swc": "^3.7.0",
+    "ckeditor5": "^42.0.1",
+    "formik": "^2.4.6",
     "lint-staged": "^15.2.7",
+    "lodash": "^4.17.21",
+    "lodash.debounce": "^4.0.8",
     "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -23,9 +28,12 @@
     "react-router-dom": "^6.24.1",
     "react-toastify": "^10.0.5",
     "redux": "^5.0.1",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.7",
+    "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

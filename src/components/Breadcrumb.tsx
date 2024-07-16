@@ -42,18 +42,18 @@ const Breadcrumb: FC<BreadcrumbProps> = ({ items }) => {
   return (
     <>
       <Flex gap="12px">
-        {mappedItems.map((el) => (
-          <>
+        {mappedItems.map((el, index) => (
+          <div key={index}>
             {el.path && (
-              <>
+              <Flex gap="12px">
                 <StyledBreadcrumbLink to={el.path || ""}>
                   {el.title}
                 </StyledBreadcrumbLink>
-                /
-              </>
+                <Paragraph>/</Paragraph>
+              </Flex>
             )}
             {!el.path && <StyledParagraph>{el.title}</StyledParagraph>}
-          </>
+          </div>
         ))}
       </Flex>
     </>

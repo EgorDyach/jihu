@@ -34,7 +34,7 @@ export const HeaderContacts = () => {
   return (
     <StyledHeaderContacts justify="center">
       <HeaderContactsWrapper justify="space-between">
-        <Flex gap={indent.vlarge}>
+        <Flex gap={indent.large}>
           <HeaderLink to={headerContacts[0].link}>
             {headerContacts[0].label}
           </HeaderLink>
@@ -43,8 +43,10 @@ export const HeaderContacts = () => {
           </HeaderLink>
         </Flex>
         <Flex gap={indent.large}>
-          {headerContacts.slice(2).map((link) => (
-            <HeaderLink to={link.link}>{link.label}</HeaderLink>
+          {headerContacts.slice(2).map((link, index) => (
+            <HeaderLink key={index} to={link.link}>
+              {link.label}
+            </HeaderLink>
           ))}
         </Flex>
       </HeaderContactsWrapper>

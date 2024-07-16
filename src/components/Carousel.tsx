@@ -4,7 +4,7 @@ import Flex from "./Flex";
 import { content } from "@lib/theme/colors";
 import styled from "styled-components";
 import { indent } from "@lib/theme/sizes";
-
+import noImg from "/img/noimage_detail.png";
 interface CarouselProps {
   images: string[];
 }
@@ -34,36 +34,58 @@ const ButtonNav = styled.button<{ $type: "left" | "right" }>`
 const Carousel: React.FC<CarouselProps> = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const prevImage = () =>
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1,
-    );
-  const nextImage = () =>
-    setCurrentIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1,
-    );
+  const prevImage = () => {
+    if (images.length)
+      setCurrentIndex((prevIndex) =>
+        prevIndex === 0 ? images.length - 1 : prevIndex - 1,
+      );
+  };
+  const nextImage = () => {
+    if (images.length)
+      setCurrentIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1,
+      );
+  };
   return (
     <Flex align="center" gap="24px">
       <ButtonNav $type="left" onClick={prevImage} />
       {
         <div style={styles.imageContainer as any}>
-          {images.map((img) => (
+          {images.length &&
+            images.map((img) => (
+              <div
+                style={
+                  {
+                    ...styles.imageWrapper,
+                    transform: `translateX(${(images.indexOf(img) - currentIndex) * 100}%)`,
+                    transition: "transform 0.5s ease",
+                  } as any
+                }
+              >
+                <img
+                  src={img}
+                  alt={`Slide ${currentIndex}`}
+                  style={styles.image}
+                />
+              </div>
+            ))}
+          {!images.length && (
             <div
               style={
                 {
                   ...styles.imageWrapper,
-                  transform: `translateX(${(images.indexOf(img) - currentIndex) * 100}%)`,
+                  transform: `translateX(0%)`,
                   transition: "transform 0.5s ease",
                 } as any
               }
             >
               <img
-                src={img}
+                src={noImg}
                 alt={`Slide ${currentIndex}`}
                 style={styles.image}
               />
             </div>
-          ))}
+          )}
         </div>
       }
       <ButtonNav onClick={nextImage} $type="right" />
