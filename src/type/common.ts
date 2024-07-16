@@ -8,7 +8,8 @@ export type Indent =
   | "medium"
   | "large"
   | "xlarge"
-  | "xxlarge";
+  | "xxlarge"
+  | "vlarge";
 
 export interface IndentStylesProps {
   $top?: Indent;
