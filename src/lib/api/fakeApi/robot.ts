@@ -5,14 +5,14 @@ const fakeData: FullRobot = {
   name: 'Торговый робот "На старт"',
   short_description:
     "Нейтральная, торговля только в лонг (на покупку) с элементами скальпинга. Сделки закрываются только по прибыли. В стратегии применяются фильтры для более стабильной торговли.",
-  full_description: `<p>Список того, что может обязательно купит наш робот:</p>
+  full_description: `<p>Список того, что может наш робот:</p>
 <ul>
-<li style="margin-left:1.5em;">селедка</li>
+<li style="margin-left:1.5em;">Действия</li>
 <ul>
-<li style="margin-left:3em;">вместе с шубой</li>
-<li style="margin-left:3em;">вместе с шапкой</li>
+<li style="margin-left:3em;">покупать акции</li>
+<li style="margin-left:3em;">продавать акции</li>
 </ul>
-<li style="margin-left:1.5em;">бутерброды<br></li>
+<li style="margin-left:1.5em;">Приносить доход<br></li>
 </ul>
 `,
   contacts: "Телеграмм: @example_nick",

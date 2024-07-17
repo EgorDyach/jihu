@@ -30,6 +30,18 @@ const ButtonNav = styled.button<{ $type: "left" | "right" }>`
       ${(props) => (props.$type === "left" ? "-45deg" : "135deg")}
     );
   }
+
+  ${media.medium`
+    padding: ${indent.medium};
+
+    &::after {
+    width: 6px;
+    height: 6px;
+    top: calc(50% - 3px);
+    left: calc(50% - 4px);
+    
+  }
+  `}
 `;
 
 const ImageContainer = styled.div`
@@ -41,14 +53,33 @@ const ImageContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  img {
+    max-width: calc(100% - 64px);
+  }
 
   ${media.xlarge`
     max-width: 700px;
-  `}
+
+        & img {
+      max-width: calc(100% - 48px);
+    }
+  `};
 
   ${media.large`
     max-width: 560px;
-  `}
+     
+    & img {
+      max-width: calc(100% - 32px);
+    }
+  `};
+
+  ${media.medium`
+    max-width: 250px;
+
+    & img {
+      max-width: calc(100% - 16px);
+    }
+  `};
 `;
 
 const StyledCarousel = styled(Flex)`
@@ -130,7 +161,6 @@ const styles = {
     width: "100%",
   },
   image: {
-    maxWidth: "calc(100% - 64px)",
     maxHeight: "100%",
   },
 };

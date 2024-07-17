@@ -66,7 +66,13 @@ export const Hero = () => {
   const navigate = useNavigate();
   return (
     <HeroWrapper>
-      <HeroVideo autoPlay muted loop poster={ABOUT_BG_PRE_IMAGE_URL}>
+      <HeroVideo
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster={ABOUT_BG_PRE_IMAGE_URL}
+      >
         <source src={ABOUT_BG_VIDEO_URL} type="video/mp4"></source>
       </HeroVideo>
       <HeroContent direction="column" align="center">

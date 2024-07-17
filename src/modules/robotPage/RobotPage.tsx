@@ -4,14 +4,10 @@ import Carousel from "@components/Carousel";
 import ContentLoader from "@components/ContentLoader";
 import Flex from "@components/Flex";
 import PlusIcon from "@components/icons/PlusIcon";
-import {
-  Header,
-  ItemTitle,
-  Paragraph,
-  SubHeader,
-} from "@components/Typography";
+import { Header, Paragraph, SubHeader } from "@components/Typography";
 import { useAppDispatch } from "@hooks/useAppDispatch";
 import { requestFullRobot } from "@lib/api/robot";
+import { media } from "@lib/theme/media";
 import PageNotFound from "@modules/pageNotFound/PageNotFound";
 import { formatPrice } from "@modules/shopPage/helpers";
 import { uiSelectors, uiActions } from "@store/ui";
@@ -20,8 +16,15 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import styled from "styled-components";
 
 export const robotPath = "/shop/:robotId";
+
+const HeaderButton = styled(Button)`
+  ${media.medium`
+    display: none;
+  `}
+`;
 
 export const RobotPage = () => {
   const { robotId = "" } = useParams();
@@ -90,13 +93,13 @@ export const RobotPage = () => {
       />
       <Flex $top="large" justify="space-between">
         <Header>{robot.name}</Header>
-        <Button
+        <HeaderButton
           type={isInCart ? "danger" : "primary"}
           icon={<PlusIcon size={20} />}
           onClick={addToCart}
         >
           <Paragraph>{isInCart ? "Убрать из корзины" : "В корзину"}</Paragraph>
-        </Button>
+        </HeaderButton>
       </Flex>
       <Flex justify="center">
         <Carousel images={robot.photos} />
@@ -116,7 +119,7 @@ export const RobotPage = () => {
           icon={<PlusIcon size={24} />}
           onClick={addToCart}
         >
-          <ItemTitle>{isInCart ? "Убрать из корзины" : "В корзину"}</ItemTitle>
+          <Paragraph>{isInCart ? "Убрать из корзины" : "В корзину"}</Paragraph>
         </Button>
       </Flex>
     </>
