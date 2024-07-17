@@ -1,5 +1,6 @@
 import Flex from "@components/Flex";
 import { Header } from "@layouts/shared/header/Header";
+import { media } from "@lib/theme/media";
 import { FC, PropsWithChildren } from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
@@ -9,6 +10,9 @@ const ShopContent = styled(Flex)`
   max-width: 1280px;
   width: 100%;
   margin: 0 auto;
+  ${media.medium`
+    padding: 16px;
+  `}
 `;
 
 const ShopWrapper = styled(Flex)`

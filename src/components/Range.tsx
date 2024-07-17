@@ -1,4 +1,5 @@
 import { content } from "@lib/theme/colors";
+import { media } from "@lib/theme/media";
 import React, { useState } from "react";
 import { Range, getTrackBackground } from "react-range";
 import styled from "styled-components";
@@ -36,6 +37,29 @@ const InputSpan = styled.span`
   font-family: "Montserrat";
 `;
 
+const StyledRange = styled.div`
+  height: 36px;
+  display: flex;
+  width: 100%;
+  ${media.medium`
+    order: -1;
+  `}
+`;
+
+const RangeWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  width: 100%;
+  gap: 32px;
+  ${media.medium`
+    gap: 8px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  `}
+`;
+
 const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
   min,
   max,
@@ -58,16 +82,7 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        maxWidth: 500,
-        width: "100%",
-        gap: 32,
-      }}
-    >
+    <RangeWrapper>
       <InputLabel>
         <InputSpan>От</InputSpan>
         <StyledInput
@@ -89,15 +104,9 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
           onChange(values);
         }}
         renderTrack={({ props, children }) => (
-          <div
+          <StyledRange
             onMouseDown={props.onMouseDown}
             onTouchStart={props.onTouchStart}
-            style={{
-              ...props.style,
-              height: "36px",
-              display: "flex",
-              width: "100%",
-            }}
           >
             <div
               ref={props.ref}
@@ -116,7 +125,7 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
             >
               {children}
             </div>
-          </div>
+          </StyledRange>
         )}
         renderThumb={({ props, isDragged }) => (
           <div
@@ -155,7 +164,7 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
           onChange={(e) => handleInputChange(1, Number(e.target.value))}
         />
       </InputLabel>
-    </div>
+    </RangeWrapper>
   );
 };
 

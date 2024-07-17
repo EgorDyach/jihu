@@ -127,7 +127,7 @@ export const HeaderNav = () => {
   const { pathname } = useLocation();
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   useEffect(() => {
-    document.body.style.overflow = isBurgerOpen ? "hidden" : "none";
+    document.body.style.overflow = isBurgerOpen ? "hidden" : "";
   }, [isBurgerOpen]);
 
   return (

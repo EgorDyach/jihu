@@ -18,6 +18,7 @@ import { isAdmin } from "@lib/utils/isAdmin";
 import Button from "@components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import { AppRoutes } from "@lib/configs/routes";
+import { media } from "@lib/theme/media";
 
 const ClearFilters = styled.button`
   background-color: ${content.primary};
@@ -29,6 +30,13 @@ const ClearFilters = styled.button`
   margin-top: ${indent.xlarge};
   font-size: ${indent.medium};
   font-family: "Montserrat";
+`;
+
+const RobotsWrapper = styled(Flex)`
+  ${media.medium`
+    gap: 16px;
+    flex-direction: column;
+  `}
 `;
 
 export const ShopPage = () => {
@@ -57,11 +65,11 @@ export const ShopPage = () => {
       <Flex direction="column">
         <ShopControls />
         {!!robots.length && (
-          <Flex $top="large" basis="50%" wrap="wrap" gap="16px">
+          <RobotsWrapper $top="large" basis="50%" wrap="wrap" gap="16px">
             {robots.map((robot) => (
               <ShopCard robot={robot} />
             ))}
-          </Flex>
+          </RobotsWrapper>
         )}
         {!robots.length && (
           <Flex align="center" direction="column">

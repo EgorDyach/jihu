@@ -56,6 +56,12 @@ const SortItem = styled.h3<{ $isActiveSort: boolean }>`
   & svg {
     transition: 0.3s ease;
   }
+
+  ${media.medium`
+    margin-top: 4px;
+    font-size: 11px;
+    line-height: 16px;
+  `}
 `;
 
 export const ShopControls: FC = () => {

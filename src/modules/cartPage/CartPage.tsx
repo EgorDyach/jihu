@@ -18,6 +18,8 @@ import { useState } from "react";
 import payment from "/img/optionsOfPay.png";
 import { Checkbox } from "@components/Checkbox";
 import { media } from "@lib/theme/media";
+import Dropdown from "@components/Dropdown";
+import ThreeDotsIcon from "@components/icons/ThreeDotsIcon";
 export const cartPath = "/cart";
 
 const TableHeaderTitle = styled(Paragraph)`
@@ -29,10 +31,19 @@ const TableHeaderTitle = styled(Paragraph)`
     max-width: 150px;
   }
 
+  &:nth-child(2) {
+    ${media.medium`
+      display:none;
+    `}
+  }
+
   &:nth-child(4) {
     width: 200px;
     ${media.xlarge`
       width: 100%;
+      `}
+    ${media.medium`
+      width: min-content;
       `}
   }
 
@@ -60,6 +71,10 @@ const TableRow = styled(Flex)`
     ${media.large`
       max-width: 350px;
     `}
+
+    ${media.medium`
+      display:none;
+    `}
   }
 
   td:nth-child(2n + 1) {
@@ -70,15 +85,43 @@ const TableRow = styled(Flex)`
     width: 200px;
 
     ${media.xlarge`
-      width: 100%;
+      width: min-content;
       `}
+
+    ${media.medium`
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        `}
   }
+
+  ${media.medium`
+    gap: 0;
+    justify-content: space-between;
+  `}
+`;
+
+const Payment = styled(Flex)`
+  ${media.medium`
+  flex-direction: column;
+  `}
 `;
 
 const ButtonWrapper = styled(Flex)`
   ${media.large`
     flex-direction: column;
     gap: 8px;
+  `}
+  ${media.medium`
+    display: none;
+  `}
+`;
+
+const CartDropwdown = styled(Dropdown)`
+  display: none;
+  ${media.medium`
+    display: flex;
+    justify-content: center;
   `}
 `;
 
@@ -99,6 +142,11 @@ export const CartPage = () => {
       progress: undefined,
       theme: "light",
     });
+  };
+
+  const onClick = (key: string, robot: Robot) => {
+    if (key === "more") navigate(AppRoutes.robotWithId(robot.id));
+    if (key === "delete") removeFromCart(robot);
   };
   return (
     <Flex direction="column">
@@ -127,7 +175,7 @@ export const CartPage = () => {
                       type="default"
                       onClick={() => navigate(AppRoutes.robotWithId(robot.id))}
                     >
-                      Подробнее
+                      <Paragraph>Подробнее</Paragraph>
                     </Button>
                     <Button
                       type="danger"
@@ -137,6 +185,22 @@ export const CartPage = () => {
                       <Paragraph>Удалить</Paragraph>
                     </Button>
                   </ButtonWrapper>
+                  <CartDropwdown
+                    position="bottomRight"
+                    onClick={(key) => onClick(key, robot)}
+                    options={[
+                      {
+                        label: <Paragraph>Подробнее</Paragraph>,
+                        key: "more",
+                      },
+                      {
+                        label: <Paragraph>Удалить</Paragraph>,
+                        key: "delete",
+                      },
+                    ]}
+                  >
+                    <ThreeDotsIcon size={20} />
+                  </CartDropwdown>
                 </td>
               </TableRow>
             ))}
@@ -144,7 +208,7 @@ export const CartPage = () => {
           <ItemTitle $top="medium">
             К оплате: {formatPrice(getFullPrice(robots))}
           </ItemTitle>
-          <Flex gap="24px" $top="medium">
+          <Payment gap="24px" $top="medium">
             <Button
               disabled={!isChecked}
               type="primary"
@@ -154,7 +218,7 @@ export const CartPage = () => {
               Оплатить
             </Button>
             <Image src={payment} $maxWidth="170px" />
-          </Flex>
+          </Payment>
           <Flex>
             <Checkbox
               checked={isChecked}
