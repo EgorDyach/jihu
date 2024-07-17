@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { headerContacts } from "./constants";
 import { content } from "@lib/theme/colors";
+import { media } from "@lib/theme/media";
 
 const HeaderLink = styled(Link)`
   color: ${content.white};
@@ -28,6 +29,9 @@ const StyledHeaderContacts = styled(Flex)`
   text-align: center;
   z-index: 10;
   width: 100%;
+  ${media.medium`
+    display: none;
+  `}
 `;
 
 export const HeaderContacts = () => {

@@ -7,6 +7,7 @@ import { ItemTitle, Paragraph } from "@components/Typography";
 import { useNavigate } from "react-router-dom";
 import { AppRoutes } from "@lib/configs/routes";
 import Button from "@components/Button/Button";
+import { media } from "@lib/theme/media";
 
 const WhyWeWrapper = styled(Flex)`
   position: relative;
@@ -32,6 +33,12 @@ const WhyWeContent = styled(Flex)`
   width: 100%;
   margin: 0 auto;
   padding: 16px;
+
+  ${media.medium`
+    flex-direction: column;
+    gap: 16px;
+    padding: 0;
+  `}
 `;
 
 const WhyWeTitle = styled.h2`

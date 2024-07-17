@@ -21,6 +21,7 @@ import Dropdown from "@components/Dropdown";
 import PenIcon from "@components/icons/PenIcon";
 import TrashIcon from "@components/icons/TrashIcon";
 import { requestRemoveRobot } from "@lib/api/admin";
+import { media } from "@lib/theme/media";
 
 interface ShopCardProps {
   robot: Robot;
@@ -73,6 +74,13 @@ export const ShopCard: FC<ShopCardProps> = ({ robot }) => {
     }
   };
 
+  const LowerPartCard = styled(Flex)`
+    ${media.xlarge`
+      flex-direction: column;
+      gap: 16px;
+  `}
+  `;
+
   const removeRobot = async (id: string | number) => {
     try {
       await requestRemoveRobot(id);
@@ -95,7 +103,7 @@ export const ShopCard: FC<ShopCardProps> = ({ robot }) => {
     <ShopCardStyled direction="column">
       <ItemTitle>{robot.name}</ItemTitle>
       <Paragraph $top="small">{robot.short_description}</Paragraph>
-      <Flex justify="space-between" $top="xlarge">
+      <LowerPartCard justify="space-between" $top="xlarge">
         <ItemTitle>{formatPrice(robot.price)}</ItemTitle>
         <Flex gap="16px">
           <Button
@@ -143,7 +151,7 @@ export const ShopCard: FC<ShopCardProps> = ({ robot }) => {
             </Button>
           )}
         </Flex>
-      </Flex>
+      </LowerPartCard>
     </ShopCardStyled>
   );
 };

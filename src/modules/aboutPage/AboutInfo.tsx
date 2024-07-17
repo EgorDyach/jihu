@@ -5,6 +5,7 @@ import img_1 from "/img/about_1.jpg";
 import img_2 from "/img/about_2.jpg";
 import styled from "styled-components";
 import { indent } from "@lib/theme/sizes";
+import { media } from "@lib/theme/media";
 
 const InfoText = styled(Paragraph)`
   max-width: 850px;
@@ -15,6 +16,9 @@ const AboutInfoWrapper = styled(Flex)`
   max-width: 1280px;
   margin: 0 auto;
   padding: ${indent.vlarge};
+  ${media.medium`
+    padding: ${indent.large};
+  `}
 `;
 
 const AboutInfoSeparator = styled.span`
@@ -24,10 +28,26 @@ const AboutInfoSeparator = styled.span`
   background-color: #818181;
 `;
 
+const AboutInfoItem = styled(Flex)`
+  ${media.large`
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 0 !important;
+
+    & img {
+      margin: 0 !important;
+    }
+
+    &>div {
+      margin: 0 !important; 
+    }
+  `}
+`;
+
 export const AboutInfo = () => {
   return (
     <AboutInfoWrapper direction="column">
-      <Flex justify="space-between" align="center">
+      <AboutInfoItem justify="space-between" align="center">
         <Flex direction="column" align="start">
           <SubHeader>О нас</SubHeader>
           <InfoText $top="medium">
@@ -50,12 +70,13 @@ export const AboutInfo = () => {
           $left="xxlarge"
           $borderRadius={10}
           src={img_1}
+          width={"100%"}
           $maxWidth="450px"
           $maxHeight="300px"
         />
-      </Flex>
+      </AboutInfoItem>
       <AboutInfoSeparator />
-      <Flex
+      <AboutInfoItem
         $top="vlarge"
         direction="row-reverse"
         justify="space-between"
@@ -92,7 +113,7 @@ export const AboutInfo = () => {
           $maxWidth="450px"
           $maxHeight="300px"
         />
-      </Flex>
+      </AboutInfoItem>
     </AboutInfoWrapper>
   );
 };

@@ -5,6 +5,7 @@ import { content } from "@lib/theme/colors";
 import styled from "styled-components";
 import { indent } from "@lib/theme/sizes";
 import noImg from "/img/noimage_detail.png";
+import { media } from "@lib/theme/media";
 interface CarouselProps {
   images: string[];
 }
@@ -31,6 +32,32 @@ const ButtonNav = styled.button<{ $type: "left" | "right" }>`
   }
 `;
 
+const ImageContainer = styled.div`
+  max-width: 960px;
+  width: 960px;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  ${media.xlarge`
+    max-width: 700px;
+  `}
+
+  ${media.large`
+    max-width: 560px;
+  `}
+`;
+
+const StyledCarousel = styled(Flex)`
+  gap: 24px;
+  ${media.large`
+    gap: 8px;
+  `}
+`;
+
 const Carousel: React.FC<CarouselProps> = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -47,10 +74,10 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
       );
   };
   return (
-    <Flex align="center" gap="24px">
+    <StyledCarousel align="center">
       <ButtonNav $type="left" onClick={prevImage} />
       {
-        <div style={styles.imageContainer as any}>
+        <ImageContainer>
           {images.length &&
             images.map((img) => (
               <div
@@ -86,24 +113,14 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
               />
             </div>
           )}
-        </div>
+        </ImageContainer>
       }
       <ButtonNav onClick={nextImage} $type="right" />
-    </Flex>
+    </StyledCarousel>
   );
 };
 
 const styles = {
-  imageContainer: {
-    maxWidth: "960px",
-    width: "960px",
-    aspectRatio: "16/9",
-    overflow: "hidden",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    position: "relative",
-  },
   imageWrapper: {
     display: "flex",
     justifyContent: "center",

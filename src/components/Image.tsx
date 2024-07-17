@@ -14,8 +14,8 @@ interface ImageProps {
 const StyledImage = styled.img<ImageProps>`
   height: ${({ $size, $height }) => $size || $height || "100%"};
   width: ${({ $size, $width }) => $size || $width || "100%"};
-  height: ${({ $maxSize, $maxHeight }) => $maxSize || $maxHeight || "100%"};
-  width: ${({ $maxSize, $maxWidth }) => $maxSize || $maxWidth || "100%"};
+  max-height: ${({ $maxSize, $maxHeight }) => $maxSize || $maxHeight || "100%"};
+  max-width: ${({ $maxSize, $maxWidth }) => $maxSize || $maxWidth || "100%"};
   border-radius: ${({ $borderRadius }) => $borderRadius}px;
   object-fit: cover;
   -o-object-fit: cover;

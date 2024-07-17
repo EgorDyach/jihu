@@ -10,6 +10,7 @@ import { uiActions, uiSelectors } from "@store/ui";
 import { useSelector } from "react-redux";
 import ArrowUpIcon from "@components/icons/ArrowUpIcon";
 import ArrowDownIcon from "@components/icons/ArrowDownIcon";
+import { media } from "@lib/theme/media";
 
 const RangeWrapper = styled(Flex)`
   max-width: 470px;
@@ -33,6 +34,10 @@ const ShopControlsStyled = styled(Flex)`
   background: #fff;
   border-radius: 10px;
   padding: 16px 24px;
+
+  ${media.xlarge`
+    flex-wrap: wrap;
+  `}
 `;
 
 const FilterTitle = styled.h3`

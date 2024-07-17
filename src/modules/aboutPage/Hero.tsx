@@ -6,12 +6,17 @@ import { indent } from "@lib/theme/sizes";
 import ABOUT_BG_PRE_IMAGE_URL from "/img/about_preimg.jpg";
 import ABOUT_BG_VIDEO_URL from "/about_video.mp4";
 import Button from "@components/Button/Button";
+import { media } from "@lib/theme/media";
 
 const HeroContent = styled(Flex)`
   background: rgba(0, 0, 0, 0.4);
   color: #f1f1f1;
   width: 100%;
   padding: 110px 20px;
+
+  ${media.medium`
+    padding: 60px 20px;
+  `}
 `;
 
 const HeroVideo = styled.video`
@@ -23,6 +28,7 @@ const HeroVideo = styled.video`
   object-fit: cover;
   z-index: -1;
   min-width: 100%;
+  max-width: 100%;
   -webkit-size: cover;
   -moz-size: cover;
   -o-size: cover;
@@ -39,11 +45,21 @@ const HeroTitle = styled.h1`
   line-height: 140px;
   font-style: italic;
   font-family: "Verdana";
+
+  ${media.medium`
+    font-size: 54px;
+    line-height: 72px;
+  `}
 `;
 
 const HeroDescription = styled.p`
   font-size: ${indent.large};
   margin-top: ${indent.xlarge};
+
+  ${media.medium`
+    font-size: ${indent.medium};
+    margin-top: ${indent.large};
+  `}
 `;
 
 export const Hero = () => {

@@ -17,6 +17,7 @@ import { getFullPrice } from "./helpers";
 import { useState } from "react";
 import payment from "/img/optionsOfPay.png";
 import { Checkbox } from "@components/Checkbox";
+import { media } from "@lib/theme/media";
 export const cartPath = "/cart";
 
 const TableHeaderTitle = styled(Paragraph)`
@@ -27,27 +28,58 @@ const TableHeaderTitle = styled(Paragraph)`
   &:nth-child(2n + 1) {
     max-width: 150px;
   }
+
+  &:nth-child(4) {
+    width: 200px;
+    ${media.xlarge`
+      width: 100%;
+      `}
+  }
+
+  text-align: center;
 `;
 
 const TableRow = styled(Flex)`
   padding: 24px;
+
   border-bottom: 1px solid #333;
 
   td {
     max-width: 280px;
     width: 100%;
+    text-align: center;
   }
 
   td:nth-child(2) {
+    padding: 0 10px;
     display: -webkit-box;
     -webkit-line-clamp: 3; // количество строк
     -webkit-box-orient: vertical;
     overflow: hidden;
+
+    ${media.large`
+      max-width: 350px;
+    `}
   }
 
   td:nth-child(2n + 1) {
     max-width: 150px;
   }
+
+  td:nth-child(4) {
+    width: 200px;
+
+    ${media.xlarge`
+      width: 100%;
+      `}
+  }
+`;
+
+const ButtonWrapper = styled(Flex)`
+  ${media.large`
+    flex-direction: column;
+    gap: 8px;
+  `}
 `;
 
 export const CartPage = () => {
@@ -74,21 +106,23 @@ export const CartPage = () => {
       {!!robots.length && (
         <Flex direction="column">
           <Flex direction="column">
-            <TableRow justify="space-between">
+            <TableRow justify="center" gap="48px">
               <TableHeaderTitle>Название</TableHeaderTitle>
               <TableHeaderTitle>Описание</TableHeaderTitle>
               <TableHeaderTitle>Цена</TableHeaderTitle>
               <TableHeaderTitle>Действия</TableHeaderTitle>
             </TableRow>
             {robots.map((robot) => (
-              <TableRow justify="space-between">
+              <TableRow justify="center" gap="48px">
                 <td>{robot.name}</td>
-                <td>{robot.short_description}</td>
+                <td>
+                  <p>{robot.short_description}</p>
+                </td>
                 <td>
                   <ItemTitle>{formatPrice(robot.price)}</ItemTitle>
                 </td>
                 <td>
-                  <Flex gap="16px">
+                  <ButtonWrapper gap="16px">
                     <Button
                       type="default"
                       onClick={() => navigate(AppRoutes.robotWithId(robot.id))}
@@ -102,7 +136,7 @@ export const CartPage = () => {
                     >
                       <Paragraph>Удалить</Paragraph>
                     </Button>
-                  </Flex>
+                  </ButtonWrapper>
                 </td>
               </TableRow>
             ))}
