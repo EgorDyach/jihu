@@ -11,8 +11,8 @@ export const robotCreatingInitialValue: RobotForm = {
   short_description: "",
   full_description: "",
   price: 0,
-  contscts: DEFAULT_CONTACTS,
-  images: [],
+  contacts: DEFAULT_CONTACTS,
+  photos: [],
 };
 
 export const robotCreatingValidationSchema = Yup.object().shape({

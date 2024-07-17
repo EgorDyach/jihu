@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 
-export const AdminLoginPath = "/admin/login";
+export const AdminLoginPath = "/login";
 
 const Input = styled.input`
   border: none;

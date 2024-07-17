@@ -16,6 +16,10 @@ export type FormPhotosProps = Omit<
   FormControlProps &
   IndentStylesProps;
 
+export type FormPhotoItem =
+  | { id: number; type: "url"; file: string }
+  | { id: number; type: "file"; file: File };
+
 const FormGallary = styled(Flex)`
   overflow: hidden;
 `;
@@ -61,12 +65,15 @@ const FormPhotos: FC<FormPhotosProps> = ({ name }) => {
   const [local, setLocal] = useState<{ link: string; id: number }[]>([]);
 
   useEffect(() => {
-    setLocal(
-      controlValue.map((file: { id: number; file: File }) => ({
-        id: file.id,
-        link: URL.createObjectURL(file.file),
-      })),
-    );
+    if (controlValue)
+      setLocal(
+        // []
+        controlValue.map((file: FormPhotoItem) => ({
+          id: file.id,
+          link:
+            file.type === "file" ? URL.createObjectURL(file.file) : file.file,
+        })),
+      );
   }, [controlValue]);
 
   return (
@@ -82,15 +89,18 @@ const FormPhotos: FC<FormPhotosProps> = ({ name }) => {
           type="file"
           multiple
           onChange={(event) => {
-            const newPhotos = [];
+            const newPhotos: FormPhotoItem[] = [];
             if (event.currentTarget.files)
               for (let i = 0; i < event.currentTarget.files.length; i++) {
                 newPhotos.push({
                   file: event.currentTarget.files[i],
+                  type: "file",
                   id: Math.floor(Math.random() * 1000000),
                 });
               }
-            setControlValue([...controlValue, ...newPhotos]);
+            setControlValue(
+              controlValue ? [...controlValue, ...newPhotos] : newPhotos,
+            );
           }}
           onBlur={setControlTouched}
         />
@@ -108,9 +118,7 @@ const FormPhotos: FC<FormPhotosProps> = ({ name }) => {
                 <PreImgCross
                   onClick={() => {
                     setControlValue(
-                      controlValue.filter(
-                        (c: { id: number; file: File }) => c.id !== el.id,
-                      ),
+                      controlValue.filter((c: FormPhotoItem) => c.id !== el.id),
                     );
                   }}
                   icon={<CrossIcon size={30} color="#fff" />}

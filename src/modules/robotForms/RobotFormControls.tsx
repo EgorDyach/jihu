@@ -26,7 +26,7 @@ export const RobotFormControls = () => {
         name="full_description"
       />
       <FormInput $top="medium" type="number" name="price" label="Цена" />
-      <FormPhotos name="images" />
+      <FormPhotos name="photos" />
       <Button
         $top="xlarge"
         type="default"

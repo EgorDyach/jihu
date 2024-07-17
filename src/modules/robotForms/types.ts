@@ -3,8 +3,8 @@ export type RobotFormPayload = {
   short_description: string;
   full_description: string;
   price: number;
-  contscts: string;
-  images: File[];
+  contacts: string;
+  photos: (string | File)[];
 };
 
 export type RobotForm = {
@@ -12,6 +12,15 @@ export type RobotForm = {
   short_description: string;
   full_description: string;
   price: number;
-  contscts: string;
-  images: { file: File; id: number }[];
+  contacts: string;
+  photos: { file: File | string; id: number }[];
+};
+
+export type RobotFormEdit = {
+  name: string;
+  short_description: string;
+  full_description: string;
+  price: number;
+  contacts: string;
+  photos: (string | File)[];
 };
