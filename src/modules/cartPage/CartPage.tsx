@@ -117,10 +117,11 @@ const ButtonWrapper = styled(Flex)`
   `}
 `;
 
-const CartDropwdown = styled(Dropdown)`
-  display: none;
+const DrodownCon = styled(Flex)`
+  display: none !important;
+
   ${media.medium`
-    display: flex;
+    display: flex !important;
     justify-content: center;
   `}
 `;
@@ -185,22 +186,24 @@ export const CartPage = () => {
                       <Paragraph>Удалить</Paragraph>
                     </Button>
                   </ButtonWrapper>
-                  <CartDropwdown
-                    position="bottomRight"
-                    onClick={(key) => onClick(key, robot)}
-                    options={[
-                      {
-                        label: <Paragraph>Подробнее</Paragraph>,
-                        key: "more",
-                      },
-                      {
-                        label: <Paragraph>Удалить</Paragraph>,
-                        key: "delete",
-                      },
-                    ]}
-                  >
-                    <ThreeDotsIcon size={20} />
-                  </CartDropwdown>
+                  <DrodownCon>
+                    <Dropdown
+                      position="bottomRight"
+                      onClick={(key) => onClick(key, robot)}
+                      options={[
+                        {
+                          label: <Paragraph>Подробнее</Paragraph>,
+                          key: "more",
+                        },
+                        {
+                          label: <Paragraph>Удалить</Paragraph>,
+                          key: "delete",
+                        },
+                      ]}
+                    >
+                      <ThreeDotsIcon size={20} />
+                    </Dropdown>
+                  </DrodownCon>
                 </td>
               </TableRow>
             ))}

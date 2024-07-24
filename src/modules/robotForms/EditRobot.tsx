@@ -5,7 +5,7 @@ import { FC, useEffect, useState } from "react";
 import { useCallbackOnce } from "@hooks/useCallbackOnce";
 import { toast } from "react-toastify";
 import { AppRoutes } from "@lib/configs/routes";
-import { requestCreateRobot } from "@lib/api/admin";
+import { requestEditRobot } from "@lib/api/admin";
 import { RobotForm, RobotFormEdit } from "./types";
 import AppFormik from "@components/form/AppFormik";
 import { RobotFormControls } from "./RobotFormControls";
@@ -54,10 +54,13 @@ const EditRobotPage: FC = () => {
   const handleSubmit = useCallbackOnce(async (values: RobotForm) => {
     if (!values) return;
     try {
-      await requestCreateRobot({
-        ...values,
-        photos: values.photos.map((el) => el.file),
-      });
+      await requestEditRobot(
+        {
+          ...values,
+          photos: values.photos.map((el) => el.file),
+        },
+        robotId,
+      );
       toast("✅ Робот успешно изменен!");
       navigate(AppRoutes.shop);
     } catch (e) {

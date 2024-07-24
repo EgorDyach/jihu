@@ -1,25 +1,106 @@
 import { RobotFormPayload } from "@modules/robotForms/types";
-import { fakeRequestLogin } from "./fakeApi/admin";
-import {
-  fakeRequestCreateRobot,
-  fakeRequestRemoveRobot,
-} from "./fakeApi/robots";
+import axios from "axios";
 
 export const requestLogin = async (
   login: string,
   password: string,
 ): Promise<string> => {
-  return await fakeRequestLogin(login, password);
+  return await axios
+    .get(`https://trade-shop.onrender.com/login/admin/${login}/${password}`)
+    .then((data) => data.data.detail);
 };
 
 export const requestRemoveRobot = async (
   id: string | number,
 ): Promise<void> => {
-  return await fakeRequestRemoveRobot(id);
+  return await axios.delete(
+    `https://trade-shop.onrender.com/shop/delete_item/${id}`,
+    {
+      data: {
+        token: String(localStorage.getItem("accessJihu")),
+      },
+    },
+  );
 };
 
 export const requestCreateRobot = async (
   robotPayload: RobotFormPayload,
 ): Promise<void> => {
-  return await fakeRequestCreateRobot(robotPayload);
+  console.log(robotPayload);
+  const formData = new FormData();
+  robotPayload.photos.forEach((photo) => {
+    formData.append("photo", photo);
+  });
+  // formData.append("name", robotPayload.name);
+  // formData.append("short_description", robotPayload.short_description);
+  // formData.append("full_description", robotPayload.full_description);
+  // formData.append("price", String(robotPayload.price));
+  // formData.append("contacts", robotPayload.contacts);
+  formData.append(
+    "request",
+    JSON.stringify({
+      name: robotPayload.name,
+      short_description: robotPayload.short_description,
+      full_description: robotPayload.full_description,
+      price: robotPayload.price,
+      contacts: robotPayload.contacts,
+      token: String(localStorage.getItem("accessJihu")),
+    }),
+  );
+  // formData.append("token", String(localStorage.getItem("accessJihu")));
+  return await axios.post(
+    "https://trade-shop.onrender.com/shop/new_item",
+    // {
+    //   ...robotPayload,
+    //   photos: robotPayload.photos.map((photo) => photo),
+    //   token: localStorage.getItem("accessJihu"),
+    // },
+    formData,
+    {
+      headers: { "Content-Type": "multipart/form-data" },
+    },
+  );
+};
+
+export const requestEditRobot = async (
+  robotPayload: RobotFormPayload,
+  id: string | number,
+): Promise<void> => {
+  console.log(robotPayload);
+  const formData = new FormData();
+  robotPayload.photos.forEach((photo) => {
+    if (typeof photo !== "string") formData.append("photo", photo);
+  });
+  // formData.append("name", robotPayload.name);
+  // formData.append("short_description", robotPayload.short_description);
+  // formData.append("full_description", robotPayload.full_description);
+  // formData.append("price", String(robotPayload.price));
+  // formData.append("contacts", robotPayload.contacts);
+  formData.append(
+    "request",
+    JSON.stringify({
+      name: robotPayload.name,
+      short_description: robotPayload.short_description,
+      full_description: robotPayload.full_description,
+      price: robotPayload.price,
+      contacts: robotPayload.contacts,
+      token: String(localStorage.getItem("accessJihu")),
+      last_photos: robotPayload.photos.filter(
+        (photo) => typeof photo === "string",
+      ),
+    }),
+  );
+  // formData.append("token", String(localStorage.getItem("accessJihu")));
+  return await axios.put(
+    `https://trade-shop.onrender.com/update/shop/item/${id}`,
+    // {
+    //   ...robotPayload,
+    //   photos: robotPayload.photos.map((photo) => photo),
+    //   token: localStorage.getItem("accessJihu"),
+    // },
+    formData,
+    {
+      headers: { "Content-Type": "multipart/form-data" },
+    },
+  );
 };
