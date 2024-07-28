@@ -43,20 +43,7 @@ export const PostsCard: FC<PostsCardProps> = ({ post }) => {
       <ItemTitle $top="small">{post.name}</ItemTitle>
       {post.photo_link && <Image $top="small" src={post.photo_link} />}
       {!post.photo_link && (
-        <StyledDescription>
-          {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus quis,
-        sequi cumque enim animi tenetur, eligendi blanditiis reiciendis
-        recusandae cupiditate ex minima fugiat vero! Nam quis mollitia nulla!
-        Eveniet, a, architecto laborum praesentium nihil, ducimus blanditiis
-        accusantium amet nemo voluptate aliquid sequi aperiam impedit temporibus
-        tenetur ea ipsam consectetur deserunt minus illo rem commodi cum. Rem
-        voluptates voluptatibus atque eligendi quam, commodi incidunt quis
-        repudiandae debitis porro. Mollitia ut esse iure quam facere. Quidem
-        dolore qui nesciunt repellat dolor accusamus, ullam quaerat excepturi
-        nemo ipsam nam, cum obcaecati fugit impedit quod ut possimus vero sunt
-        quae perferendis unde sint culpa! */}
-          {post.description}
-        </StyledDescription>
+        <StyledDescription>{post.description}</StyledDescription>
       )}
     </StyledCard>
   );
