@@ -12,6 +12,10 @@ export const headerLinks = [
     path: "/shop",
     title: "Роботы",
   },
+  {
+    path: "/posts",
+    title: "Материалы и посты",
+  },
 ];
 
 export const headerContacts = [

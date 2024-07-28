@@ -14,6 +14,7 @@ import {
 import { createRobotPath, editRobotPath } from "@modules/robotForms/constants";
 import CreateRobotPage from "@modules/robotForms/CreateRobot";
 import EditRobotPage from "@modules/robotForms/EditRobot";
+import { PostsPage, postsPath } from "@modules/posts/PostsPage";
 
 export const appRoutersConfig = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ export const appRoutersConfig = createBrowserRouter([
       {
         path: AdminLoginPath,
         element: <AdminLoginPage />,
+      },
+      {
+        path: postsPath,
+        element: <PostsPage />,
       },
     ],
   },
