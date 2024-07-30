@@ -16,6 +16,10 @@ import CreateRobotPage from "@modules/robotForms/CreateRobot";
 import EditRobotPage from "@modules/robotForms/EditRobot";
 import { PostsPage, postsPath } from "@modules/posts/PostsPage";
 import { PostPage, postPath } from "@modules/post/PostPage";
+import { createPostPath } from "@modules/postForms/constants";
+import CreatePostPage from "@modules/postForms/CreatePost";
+import { ScreenerPage, screenerPath } from "@modules/screener/ScreenerPage";
+import { CryptoPage, cryptoPath } from "@modules/crypto/CryptoPage";
 
 export const appRoutersConfig = createBrowserRouter([
   {
@@ -62,6 +66,18 @@ export const appRoutersConfig = createBrowserRouter([
       {
         path: postPath,
         element: <PostPage />,
+      },
+      {
+        path: createPostPath,
+        element: <CreatePostPage />,
+      },
+      {
+        path: screenerPath,
+        element: <ScreenerPage />,
+      },
+      {
+        path: cryptoPath,
+        element: <CryptoPage />,
       },
     ],
   },

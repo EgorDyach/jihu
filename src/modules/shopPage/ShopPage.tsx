@@ -67,7 +67,7 @@ export const ShopPage = () => {
         {!!robots.length && (
           <RobotsWrapper $top="large" basis="50%" wrap="wrap" gap="16px">
             {robots.map((robot) => (
-              <ShopCard robot={robot} />
+              <ShopCard key={robot.id} robot={robot} />
             ))}
           </RobotsWrapper>
         )}

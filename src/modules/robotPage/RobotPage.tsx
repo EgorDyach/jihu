@@ -101,9 +101,11 @@ export const RobotPage = () => {
           <Paragraph>{isInCart ? "Убрать из корзины" : "В корзину"}</Paragraph>
         </HeaderButton>
       </Flex>
-      <Flex justify="center">
-        <Carousel images={robot.photos} />
-      </Flex>
+      {robot.photos.length && (
+        <Flex justify="center">
+          <Carousel images={robot.photos} />
+        </Flex>
+      )}
       <SubHeader $top="medium">О роботе</SubHeader>
       <div
         className="content"

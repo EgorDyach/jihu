@@ -29,7 +29,7 @@ export const PostPage = () => {
         const response = await requestFullPost(postId);
         setPost(response);
       } catch (error) {
-        toast("❌ Не удалось получить информацию о роботе!");
+        toast("❌ Не удалось получить информацию о посте!");
       } finally {
         setIsRobotLoading(false);
       }

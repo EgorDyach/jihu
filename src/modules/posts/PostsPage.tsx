@@ -49,7 +49,7 @@ export const PostsPage = () => {
       <Flex justify="space-between">
         <Header>Материалы и посты</Header>
         {isAdmin() && (
-          <Button onClick={() => navigate(AppRoutes.adminCreate)}>
+          <Button onClick={() => navigate(AppRoutes.postCreate)}>
             Новый пост
           </Button>
         )}

@@ -125,7 +125,12 @@ export const ShopControls: FC = () => {
       </RangeWrapper>
       <RangeWrapper direction="column" align="start">
         <FilterTitle>Цена</FilterTitle>
-        <Range min={0} max={max} step={1000} onChange={handleRangeChange} />
+        <Range
+          min={0}
+          max={max || 10000}
+          step={1000}
+          onChange={handleRangeChange}
+        />
       </RangeWrapper>
       <Flex align="end">
         <ApplyButton onClick={applyFilter} $isActive={isPriceTouched}>

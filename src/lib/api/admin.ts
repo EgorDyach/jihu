@@ -29,13 +29,8 @@ export const requestCreateRobot = async (
   console.log(robotPayload);
   const formData = new FormData();
   robotPayload.photos.forEach((photo) => {
-    formData.append("photo", photo);
+    formData.append("photos", photo);
   });
-  // formData.append("name", robotPayload.name);
-  // formData.append("short_description", robotPayload.short_description);
-  // formData.append("full_description", robotPayload.full_description);
-  // formData.append("price", String(robotPayload.price));
-  // formData.append("contacts", robotPayload.contacts);
   formData.append(
     "request",
     JSON.stringify({
@@ -47,14 +42,8 @@ export const requestCreateRobot = async (
       token: String(localStorage.getItem("accessJihu")),
     }),
   );
-  // formData.append("token", String(localStorage.getItem("accessJihu")));
   return await axios.post(
     "https://trade-shop.onrender.com/shop/new_item",
-    // {
-    //   ...robotPayload,
-    //   photos: robotPayload.photos.map((photo) => photo),
-    //   token: localStorage.getItem("accessJihu"),
-    // },
     formData,
     {
       headers: { "Content-Type": "multipart/form-data" },
@@ -69,13 +58,8 @@ export const requestEditRobot = async (
   console.log(robotPayload);
   const formData = new FormData();
   robotPayload.photos.forEach((photo) => {
-    if (typeof photo !== "string") formData.append("photo", photo);
+    if (typeof photo !== "string") formData.append("new_photos", photo);
   });
-  // formData.append("name", robotPayload.name);
-  // formData.append("short_description", robotPayload.short_description);
-  // formData.append("full_description", robotPayload.full_description);
-  // formData.append("price", String(robotPayload.price));
-  // formData.append("contacts", robotPayload.contacts);
   formData.append(
     "request",
     JSON.stringify({
@@ -90,14 +74,8 @@ export const requestEditRobot = async (
       ),
     }),
   );
-  // formData.append("token", String(localStorage.getItem("accessJihu")));
   return await axios.put(
     `https://trade-shop.onrender.com/update/shop/item/${id}`,
-    // {
-    //   ...robotPayload,
-    //   photos: robotPayload.photos.map((photo) => photo),
-    //   token: localStorage.getItem("accessJihu"),
-    // },
     formData,
     {
       headers: { "Content-Type": "multipart/form-data" },

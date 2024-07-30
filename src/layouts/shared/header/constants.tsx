@@ -13,8 +13,16 @@ export const headerLinks = [
     title: "Роботы",
   },
   {
+    path: "/screeners",
+    title: "Скринеры акций",
+  },
+  {
     path: "/posts",
     title: "Материалы и посты",
+  },
+  {
+    path: "/crypto",
+    title: "Криптовалюты",
   },
 ];
 
