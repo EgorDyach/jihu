@@ -30,6 +30,10 @@ const HeaderLink = styled(Link)<{ $isActive?: boolean }>`
     opacity: ${(props) => (props.$isActive ? 1 : 0)};
     transition: 0.3s ease-in-out;
   }
+
+  ${media.large`
+    font-size: 12px;
+  `}
 `;
 
 const HeaderLogo = styled(Link)`
@@ -66,6 +70,11 @@ const HeaderLinks = styled(Flex)`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  width: 100%;
+  justify-content: center;
+  ${media.large`
+    gap: 8px
+  `}
   ${media.medium`
     display: none;
   `}
