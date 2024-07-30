@@ -93,9 +93,8 @@ const ScreenerModal = styled.div<{ $isOpen: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999999999999999;
   transition: 0.3s ease;
-  display: ${(props) => (props.$isOpen ? "flex" : "none")};
+  z-index: ${(props) => (props.$isOpen ? 999999999999999 : -1)};
   opacity: ${(props) => (props.$isOpen ? 1 : 0)};
 `;
 
