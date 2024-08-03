@@ -186,7 +186,9 @@ export const HeaderNav = () => {
             </Flex>
           </Flex>
         </HeaderMenu>
-        <HeaderLogo to={"/"}>JIHU.RU</HeaderLogo>
+        <HeaderLogo style={{ zIndex: 110 }} to={"/"}>
+          JIHU.RU
+        </HeaderLogo>
         <HeaderLinks gap={indent.large}>
           {headerLinks.map((link, index) => (
             <HeaderLink
