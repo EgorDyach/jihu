@@ -4,6 +4,7 @@ export const AppRoutes = {
   shop: "/shop",
   posts: "/posts",
   postWithId: (id: string | number) => `/posts/${id}`,
+  editPost: (id: string | number) => `/posts/${id}/edit`,
   postCreate: "/posts/create",
   adminCreate: "/shop/create",
   robotWithId: (id: string | number) => `/shop/${id}`,

@@ -15,6 +15,17 @@ export const requestFullPost = async (
   ).data.detail[0];
 };
 
+export const requestRemovePost = async (id: string | number): Promise<void> => {
+  return await axios.delete(
+    `https://trade-shop.onrender.com/blog/delete_item?id=${id}`,
+    {
+      data: {
+        token: String(localStorage.getItem("accessJihu")),
+      },
+    },
+  );
+};
+
 export const requestCreatePost = async (
   robotPayload: PostsFormPayload,
 ): Promise<void> => {
@@ -26,8 +37,6 @@ export const requestCreatePost = async (
   }
   list.forEach((item) => {
     formData.append("photos", item);
-    // formData.append("photos", [item]);
-    // formData.append("photos", item);
   });
 
   formData.append(
@@ -47,15 +56,13 @@ export const requestCreatePost = async (
   );
 };
 
-export const requestEditRobot = async (
+export const requestEditPost = async (
   robotPayload: PostsFormPayload,
   id: string | number,
 ): Promise<void> => {
   const formData = new FormData();
-  if (robotPayload.photos) {
-    formData.append("photo", robotPayload.photos);
-  } else {
-    formData.append("photo", new Blob());
+  if (robotPayload.photos && typeof robotPayload.photos !== "string") {
+    formData.append("new_photos", robotPayload.photos);
   }
 
   formData.append(
@@ -63,6 +70,8 @@ export const requestEditRobot = async (
     JSON.stringify({
       name: robotPayload.name,
       description: robotPayload.description,
+      last_photos:
+        typeof robotPayload.photos === "string" ? [robotPayload.photos] : [],
       token: String(localStorage.getItem("accessJihu")),
     }),
   );

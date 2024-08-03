@@ -35,7 +35,7 @@ const ShopCardStyled = styled(Flex)`
   padding: ${indent.large} ${indent.xlarge};
 `;
 
-const DropdownItem = styled(Flex)<{ $type: "edit" | "delete" }>`
+export const DropdownItem = styled(Flex)<{ $type: "edit" | "delete" }>`
   color: ${(props) =>
     props.$type === "edit" ? content.primary : content.danger};
 `;

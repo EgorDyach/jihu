@@ -71,9 +71,10 @@ const HeaderLinks = styled(Flex)`
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
+  z-index: 100;
   justify-content: center;
   ${media.large`
-    gap: 8px
+    gap: 8px;
   `}
   ${media.medium`
     display: none;
@@ -200,7 +201,7 @@ export const HeaderNav = () => {
             </HeaderLink>
           ))}
         </HeaderLinks>
-        <Flex gap="24px">
+        <Flex style={{ zIndex: 110 }} gap="24px">
           <IconButton
             icon={<CartIcon color="#fff" size={24} />}
             onClick={() => navigate(AppRoutes.cart)}

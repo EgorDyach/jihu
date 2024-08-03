@@ -32,7 +32,7 @@ const CreatePostPage: FC = () => {
         photos: values.photos.file,
       });
       toast("✅ Пост успешно создан!");
-      navigate(AppRoutes.shop);
+      navigate(AppRoutes.posts);
     } catch (e) {
       toast("❌ Не удалось создать пост!");
     }

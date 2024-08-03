@@ -2,7 +2,7 @@ import Button from "@components/Button/Button";
 import ContentLoader from "@components/ContentLoader";
 import Flex from "@components/Flex";
 import { Header } from "@components/Typography";
-import { requestPosts } from "@lib/api/posts";
+import { requestPosts, requestRemovePost } from "@lib/api/posts";
 import { AppRoutes } from "@lib/configs/routes";
 import { isAdmin } from "@lib/utils/isAdmin";
 import { PaginationQueryParams } from "@type/common";
@@ -19,7 +19,7 @@ export const PostsPage = () => {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
   const [arePostsLoading, setArePostsLoading] = useState(false);
   const [pagination, setPagination] = useState<PaginationQueryParams>({
-    limit: 2,
+    limit: 4,
     offset: 0,
   });
 
@@ -37,6 +37,16 @@ export const PostsPage = () => {
       setArePostsLoading(false);
     })();
   }, []);
+
+  const removePost = async (id: string | number) => {
+    try {
+      await requestRemovePost(id);
+      toast("✅ Пост успешно удален!");
+      setAllPosts(allPosts.filter((post) => post.id !== id));
+    } catch {
+      toast("❌ Не удалось удалить пост!");
+    }
+  };
 
   useEffect(() => {
     setPosts([...allPosts.slice(0, pagination.offset + pagination.limit)]);
@@ -56,7 +66,7 @@ export const PostsPage = () => {
       </Flex>
       <Flex $top="large" direction="column" align="center" gap="16px">
         {posts.map((post) => (
-          <PostsCard key={post.id} post={post} />
+          <PostsCard removePost={removePost} key={post.id} post={post} />
         ))}
         <Button
           disabled={posts.length >= allPosts.length}

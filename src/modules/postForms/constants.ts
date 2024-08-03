@@ -2,7 +2,7 @@ import * as Yup from "yup";
 import { PostsForm } from "./types";
 
 export const createPostPath = "/posts/create";
-export const editPostPath = "/posts/:robotId/edit";
+export const editPostPath = "/posts/:postId/edit";
 
 export const postCreatingInitialValue: PostsForm = {
   name: "",
