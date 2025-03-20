@@ -1,30 +1,38 @@
-# React + TypeScript + Vite
+# Jihu
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Описание
+Jihu – это интернет-магазин по продаже торговых роботов. Проект включает в себя:
+- Главную страницу
+- Магазин с фильтрацией и сортировкой
+- Описание каждого робота
+- Раздел со скринерами акций
+- Раздел с материалами и отдельными постами
+- Административную панель для управления роботами и постами
 
-Currently, two official plugins are available:
+Также данный проект может использоваться в качестве примера для реализации интернет-магазинов.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Готовый проект
+Проект уже выложен на ресурсе `https://jihu.netlify.app/`. Возможны задержки в запросах из-за реализации бэкенда.
 
-## Expanding the ESLint configuration
+## Установка и запуск
+Для установки и запуска выполните следующие команды:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```sh
+# Клонируем репозиторий
+git clone https://github.com/EgorDyach/jihu.git
 
-- Configure the top-level `parserOptions` property like this:
+# Переходим в папку проекта
+cd jihu
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+# Устанавливаем зависимости
+npm install
+
+# Запускаем сервер разработки
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Использование
+После запуска сервер разработки будет доступен по адресу `http://localhost:5173`. В административную панель можно войти, если у вас есть соответствующие права доступа.
+
+## Лицензия
+Этот проект распространяется под лицензией **GPL**. Это означает, что любые производные проекты должны также оставаться открытыми и распространяться под той же лицензией.
